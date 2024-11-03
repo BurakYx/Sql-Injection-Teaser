@@ -1,0 +1,51 @@
+# SQL Injection Nedir?
+
+SQL Injection, bir uygulamanın veri tabanına gönderdiği SQL sorgularına kötü niyetli verilerin eklenmesiyle yapılan bir siber saldırı tekniğidir. Bu saldırı, veri tabanından yetkisiz bilgi çekmek, veri manipülasyonu yapmak veya sistemdeki diğer veritabanı işlemlerini yetkisiz bir şekilde çalıştırmak için kullanılabilir.
+
+---
+
+## SQL Injection’ın Tanımı
+
+SQL Injection, genellikle veritabanına erişim sağlamak için kullanılan SQL sorgularına, kullanıcı giriş noktalarından zararlı kodların eklenmesi yoluyla gerçekleştirilir. Bir web uygulamasında güvenlik önlemleri alınmadığında, SQL Injection saldırıları veri sızdırma, yetkisiz erişim sağlama veya veritabanı manipülasyonu yapma amacıyla yapılabilir.
+
+---
+
+## Temel SQL Komutları
+
+SQL Injection saldırılarını anlamak için bazı temel SQL komutlarına göz atalım:
+
+- **SELECT**: Veritabanından veri çekmek için kullanılır.
+- **INSERT**: Veritabanına yeni veri eklemek için kullanılır.
+- **UPDATE**: Var olan veriyi güncellemek için kullanılır.
+- **DELETE**: Veritabanından veri silmek için kullanılır.
+
+Bu komutların kullanıcı tarafından kontrol edilen girdilere karşı korumasız kullanılması, SQL Injection saldırılarına yol açabilir.
+
+---
+
+## SQL Injection Nasıl Çalışır?
+
+SQL Injection, bir SQL sorgusunda kullanıcıdan alınan verinin doğrudan sorguya dahil edilmesiyle çalışır. Kötü niyetli kullanıcılar, SQL kodlarını kullanarak sorguyu manipüle edebilir ve sistemin beklediği davranışın dışına çıkabilir. Aşağıdaki gibi basit bir giriş formunda, SQL Injection nasıl yapılabileceğini görelim.
+
+---
+
+## Hangi Veri Giriş Noktalarından SQL Injection Uygulanabilir?
+
+SQL Injection saldırıları, birçok farklı veri giriş noktasından yapılabilir. En yaygın olanları şunlardır:
+
+1. **URL Parametreleri**: URL’deki parametreler SQL sorgularına dahil edilirse, saldırganlar buradan SQL Injection yapabilir.
+2. **Form Girişleri**: Kullanıcı adı ve şifre gibi form alanları SQL Injection için sık kullanılan noktalardır.
+3. **Cookie ve HTTP Header Bilgileri**: Kullanıcıdan alınan çerezler veya HTTP başlıkları SQL sorgularında kullanılıyorsa, buradan da saldırı yapılabilir.
+
+---
+
+## Örnek: SQL Injection ile Giriş Baypas Etme
+
+Aşağıda, SQL Injection ile giriş doğrulama sisteminin nasıl atlatılabileceğine dair bir örnek bulunmaktadır.
+
+### Sorgunun Normal Çalışma Şekli
+
+Kullanıcının girdiği **kullanıcı adı** ve **şifre** bilgileri kullanılarak doğrulama yapılan tipik bir SQL sorgusu:
+
+```sql
+SELECT * FROM users WHERE username = 'admin' AND password = '12345';
