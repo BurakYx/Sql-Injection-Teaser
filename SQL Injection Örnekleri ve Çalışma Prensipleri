@@ -1,0 +1,22 @@
+# SQL Injection Örnekleri ve Çalışma Prensipleri
+
+Login Bypass: Kötü niyetli kullanıcıların, giriş alanlarını kullanarak sistemlere sızması.
+
+Veri Sızdırma: Veritabanındaki verilerin ele geçirilmesi.
+
+Sistem Yetkilerini Ele Geçirme: Yönetici hesaplarına erişim sağlama.
+
+DELETE, UPDATE gibi Komutlarla Veritabanı Manipülasyonu: Yetkisiz veri güncellemeleri veya silme işlemleri.
+
+
+
+Bir form girişine SQL Injection yapılabileceği bir örnek düşünelim:
+
+sql
+
+SELECT * FROM users WHERE username = 'admin' -- AND password = '...';
+
+Bu girişle, şifre sorgusu yorum satırına alınarak tüm şifre kontrolleri geçilebilir.
+
+
+
