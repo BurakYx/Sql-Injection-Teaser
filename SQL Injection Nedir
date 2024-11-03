@@ -47,5 +47,17 @@ Aşağıda, SQL Injection ile giriş doğrulama sisteminin nasıl atlatılabilec
 
 Kullanıcının girdiği **kullanıcı adı** ve **şifre** bilgileri kullanılarak doğrulama yapılan tipik bir SQL sorgusu:
 
-```sql
+sql
 SELECT * FROM users WHERE username = 'admin' AND password = '12345';
+Bu sorguda, veritabanı "admin" kullanıcı adına ve "12345" şifresine sahip bir kullanıcı kaydı olup olmadığını kontrol eder.
+
+# SQL Injection ile Sorgunun Manipüle Edilmesi
+Kötü niyetli bir kullanıcı, username alanına şu SQL kodunu girebilir:
+
+sql
+' OR '1'='1
+Bu giriş, yukarıdaki sorguya eklenerek aşağıdaki hale gelir:
+
+sql
+SELECT * FROM users WHERE username = '' OR '1'='1';
+Bu sorgu, username alanını boş bırakıp OR '1'='1' koşulunu ekler. Bu koşul her zaman doğru olduğundan, veritabanı bütün kullanıcıları döndürür ve saldırgan sisteme yetkisiz erişim sağlayabilir.
