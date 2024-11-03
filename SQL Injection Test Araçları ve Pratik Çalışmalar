@@ -1,0 +1,17 @@
+# SQL Injection Test Araçları ve Pratik Çalışmalar
+
+
+Manuel SQL Injection Testi: Elle basit sorgular yaparak veritabanı açığını test etme.
+
+Automated SQL Injection Araçları: SQLMap gibi araçlarla otomatik saldırı testleri.
+
+CTF (Capture The Flag) Platformları: Eğitim amaçlı SQL Injection açıklarını bulma ve pratik yapma.
+
+Burp Suite Kullanımı: SQL Injection açıklarını bulmak için proxy ayarları ile test yapma.
+
+Örnek Araç: SQLMap ile bir hedef URL'de SQL Injection testi:
+
+bash
+sqlmap -u "http://target.com/page.php?id=1" --dbs
+
+Bu komut, belirli bir URL'deki açıkları kontrol eder ve veritabanı bilgilerini döndürür.
