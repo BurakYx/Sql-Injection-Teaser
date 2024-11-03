@@ -1,0 +1,18 @@
+# SQL Injection’a Karşı Savunma Yöntemleri
+
+Parametreli Sorgular (Prepared Statements): Kullanıcının girdiği verilerin doğrudan sorguya dahil edilmeden çalıştırılması.
+
+ORM (Object Relational Mapping) Kullanımı: Doğrudan SQL komutları yerine ORM kullanımı.
+
+Doğrulama ve Filtreleme: Girdi değerlerinin kontrol edilmesi.
+
+Entegre Güvenlik Duvarları (Web Application Firewall - WAF): Web uygulamaları için ek güvenlik katmanı.
+
+Örnek Kod:
+PHP’de Prepared Statement örneği:
+
+php
+$stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+$stmt->execute(['username' => $username, 'password' => $password]);
+
+Bu kod yapısında kullanıcıdan gelen veriler doğrudan sorguya eklenmediği için SQL Injection riski azalır.
