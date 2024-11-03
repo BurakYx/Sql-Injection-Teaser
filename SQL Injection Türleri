@@ -1,0 +1,44 @@
+# SQL Injection Türleri
+
+SQL Injection, çeşitli yöntemlerle gerçekleştirilebilen bir saldırı türüdür. Bu bölümde, farklı SQL Injection türlerini ve her birinin nasıl çalıştığını ele alacağız.
+
+---
+
+## 1. Klasik SQL Injection
+
+Klasik SQL Injection, en yaygın ve basit SQL Injection türüdür. Bu tür saldırılarda, saldırgan doğrudan SQL komutları ekleyerek sorguyu manipüle eder. Örneğin, bir giriş formuna aşağıdaki gibi bir girdi yapıldığında:
+
+```sql
+' OR '1'='1
+Sorgu, kullanıcının bilgilerini geçersiz kılarak her kullanıcıyı döndürür.
+
+
+# 2. Blind (Kör) SQL Injection
+
+Blind SQL Injection, verinin doğrudan çekilemediği durumlarda kullanılır. Bu tür saldırılarda, saldırgan sorguların doğru veya yanlış sonuçları üzerinden bilgi toplamaya çalışır. Örneğin, aşağıdaki sorgu ile saldırgan doğru/yanlış kontrolü yaparak bilgiyi çıkarabilir:
+
+sql
+SELECT * FROM users WHERE id = 1 AND (SELECT SUBSTRING(password, 1, 1) FROM admin) = 'a';
+Eğer sonuç doğruysa, saldırgan bu yöntemi kullanarak her bir karakteri deneme yanılma ile tahmin edebilir.
+
+
+
+# 3. Error-based SQL Injection
+
+Error-based SQL Injection, SQL hatalarından faydalanarak bilgi toplama yöntemidir. Saldırgan, kasıtlı olarak hatalı bir sorgu gönderir ve hata mesajları üzerinden veri tabanı yapısı hakkında bilgi elde eder. Örneğin:
+
+sql
+SELECT * FROM users WHERE id = (SELECT COUNT(*) FROM non_existent_table);
+Bu sorgu hatalı olduğunda, hata mesajı geri dönecektir ve saldırgan bu mesajı kullanarak veri tabanındaki tabloların isimlerini öğrenebilir.
+
+
+
+# 4. Union-based SQL Injection
+Union-based SQL Injection, birden fazla tablodan veya veritabanından veri çekmek için kullanılır. Bu tür saldırılarda, UNION SQL komutu ile farklı sorgular birleştirilir. Örneğin, aşağıdaki sorgu iki tabloyu birleştirerek bilgi çekmeyi sağlar:
+
+sql
+SELECT name, surname FROM users WHERE id = 1 UNION SELECT username, password FROM admin;
+Bu sorguda, users tablosundan name ve surname bilgileri alındığı gibi, admin tablosundan username ve password bilgileri de eklenir. Böylece, saldırgan birden fazla tablodan veri elde edebilir.
+
+
+
